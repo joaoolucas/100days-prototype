@@ -35,7 +35,7 @@ contract Contract is ReentrancyGuard{
 
     // Can only withdraw after 100 days
 
-    function withdraw() external {
+    function withdraw() external nonReentrant {
         require(accounts[msg.sender].releaseTime < block.timestamp, "The challenge isn't over!");
         require(accounts[msg.sender].balance > 0, "You don't have balance");
         accounts[msg.sender].releaseTime = 0;
